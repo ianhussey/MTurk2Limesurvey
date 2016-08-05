@@ -1,0 +1,39 @@
+<!-- Pass Amazon Mechanical Turk (AMT) workerID variable from AMT to a limesurvey text response question -->
+<!-- Adapted from http://sapir.psych.wisc.edu/wiki/index.php/MTurk -->
+<!-- NB This code should be placed in the AMT requester web interface under Create>Edit project>Design layout>Source -->
+
+<HTML>
+    <HEAD>
+        <!-- obtain the Mechanical Turk workerID -->
+        <script language="javascript" type='text/javascript'>
+        function getParamFromURL( name )
+        {
+            name = name.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");
+            var regexS = "[\?&]"+name+"=([^&#]*)";
+            var regex = new RegExp( regexS );
+            var results = regex.exec( window.location.href );
+            if( results == null )
+                return "";
+            else
+                return results[1];
+        }
+        var usernameFromParamString = getParamFromURL( 'workerId' );
+        </script>
+    </HEAD>
+
+    <BODY>
+        <p>Click the link below to open the survey in a new tab.</p>
+        <p>Please keep this tab open as well. At the end of the survey, you will be given a completion code. Please type this into the box below in order to be paid.&nbsp;</p>
+        <!-- NB currently I simply present the same static completion code to all participants. You may wish to randomly geneate one -->
+
+        <!-- Append the workerID onto the limesurvey prefill URL (using limesurvey v2.0+) and set to open in a new tab -->
+        <!-- Limesurvey answer prefill URL must be customised below --> 
+        <!-- These take the format "https://www.example.com/index.php/survey/index/sid/STUDY_ID_HERE]/newtest/Y?[STUDY_ID_HERE]X[QUESTION_GROUP_ID_HERE]X[QUESTION_ID_HERE]=gelb&amp;[STUDY_ID_HERE]X[QUESTION_GROUP_ID_HERE]X[QUESTION_ID_HERE]=[PREFILLED_ANSWER_HERE] -->
+        <!-- See https://manual.limesurvey.org/Workarounds:_Survey_behaviour#Prefilling_survey_answers_using_the_survey_URL -->
+        <script>
+        document.write('<a href="https://www.limey.ugent.be/LIPLAB/index.php/survey/index/sid/111111/newtest/Y?111111X111X1111=gelb&amp;111111X111X1111=' + usernameFromParamString + '" target="_blank">1. Begin Survey Here</a>');
+        </script>
+
+        <p>2. Enter completion code here: &nbsp; <input id="CompletionCode" name="CompletionCode" size="20" type="text" /></p>
+    </BODY>
+</HTML>
