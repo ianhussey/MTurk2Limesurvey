@@ -8,7 +8,6 @@ The comments in the .html file should (hopefully) explain how to customise the c
 
 The generated HIT page is extremely simple:
 
-![alt text](https://github.com/Ian-Hussey/MTurk2Limesurvey/Screenshot.png "Screenshot")
-
+![alt text](https://github.com/ianhussey/MTurk2Limesurvey/blob/master/Screenshot.png "Screenshot")
 
 
